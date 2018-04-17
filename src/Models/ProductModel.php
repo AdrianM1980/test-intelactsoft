@@ -55,12 +55,12 @@ class ProductModel extends AppModel{
         }
         
         $productsIdClause = implode(',', array_fill(0, count($productsIds), '?'));
-        $query = "SELECT id, category, price FROM products WHERE  category = ? AND  id IN($productsIdClause) ";        
+        $query = "SELECT id, category, price FROM products WHERE  category = ? AND  id IN($productsIdClause) ORDER BY price ASC ";        
         $sth = DbCon::con()->prepare($query);  
         $queryParams = array_merge([$categoryId], $productsIds);
         $sth->execute($queryParams);
         $products =  $sth->fetchAll(\PDO::FETCH_ASSOC);
-        
+          
         return $products;
     }
 }

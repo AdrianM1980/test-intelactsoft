@@ -7,7 +7,7 @@ use Mtest\Discount;
 
 class OrderController extends AppController{
     
-    private $discountByTotalMessages = [];
+    private $orderDiscounts = [];
    
     
     public function getDiscountsForOrder($orderData = []){
@@ -17,18 +17,47 @@ class OrderController extends AppController{
         $applyDiscountByTotal = $discountByTotalObj->checkIfApplyDiscount();
       
         if(!empty($applyDiscountByTotal)){
-            $discountByTotalObj->calculateDiscount();            
-            $this->discountByTotalMessages[] =  $discountByTotalObj->discountMessage();
+            $discount = $discountByTotalObj->calculateDiscount();
+            
+            $this->orderDiscounts[] =[
+                'discount' => $discount,
+                'discount-message' =>  $discountByTotalObj->discountMessage()
+            ];                    
         }
      
-        $discountByCategory = new Discount\DiscountNumberOfProducts($orderData);
-        $applyDiscountByCategory = $discountByCategory->checkIfApplyDiscount();
-        if($discountByCategory){
-            echo 'áaa';
-           $this->discountByTotalMessages[] = $discountByCategory->discountMessage();
+        $discountNumberOfProducts = new Discount\DiscountNumberOfProducts($orderData);
+        $applyDiscountNumberOfProducts = $discountNumberOfProducts->checkIfApplyDiscount();
+        if($applyDiscountNumberOfProducts){
+            $discount =  $discountNumberOfProducts->calculateDiscount(); 
+            $this->orderDiscounts[] =[
+                'discount' => $discount,
+                'discount-message' =>  $discountNumberOfProducts->discountMessage()
+            ];           
         }
-     
-        var_dump($this->discountByTotalMessages);
+        
+        $discountByProductCategory = new Discount\DiscountByProductCategory($orderData);
+        $applyByProductCategory = $discountByProductCategory->checkIfApplyDiscount();
+        var_dump($applyByProductCategory);
+        if($applyByProductCategory){
+             $discount =  $discountByProductCategory->calculateDiscount();
+             $this->orderDiscounts[] =[
+                'discount' => $discount,
+                'discount-message' =>  $discountByProductCategory->discountMessage()
+            ];
+        }
+   
+        //var_dump($this->orderDiscounts);
+        
+        if(empty($this->orderDiscounts)){
+            $this->orderDiscounts[] = [
+                'discount' => null,
+                'discount-message' => 'There is no discount for this order'
+            ];
+        }
+        
+        echo json_encode($this->orderDiscounts);
+        
+        return true;
     } 
     
 }

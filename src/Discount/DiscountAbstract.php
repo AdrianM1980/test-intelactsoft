@@ -14,11 +14,30 @@ abstract class DiscountAbstract{
        return $this->order;
     }
     
+    function getOrderProductsEqualWithQuantity(int $quantityFilter){
+        
+        $orderProductsIds = [];
+        if(!empty( $this->order['items'])){
+            foreach($this->order['items'] as $orderItem){
+             
+                if($orderItem['quantity'] != $quantityFilter){
+                    continue;
+                }             
+                $orderProductsIds[] = $orderItem['product-id'];     
+            }
+        }
+            
+        return $orderProductsIds;
+    }
+     
+       
+    
+    
     function getOrderProductsIds(){
         
         $orderProductsIds = [];
         if(!empty( $this->order['items'])){
-            foreach($this->order['items'] as $orderItem){                   
+            foreach($this->order['items'] as $orderItem){
                 $orderProductsIds[] = $orderItem['product-id'];            
             }
         }
