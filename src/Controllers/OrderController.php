@@ -37,7 +37,7 @@ class OrderController extends AppController{
         
         $discountByProductCategory = new Discount\DiscountByProductCategory($orderData);
         $applyByProductCategory = $discountByProductCategory->checkIfApplyDiscount();
-        var_dump($applyByProductCategory);
+       
         if($applyByProductCategory){
              $discount =  $discountByProductCategory->calculateDiscount();
              $this->orderDiscounts[] =[
