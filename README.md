@@ -1,7 +1,7 @@
 # test-intelactsoft
 
 
-For run the project is need to import the database from /database.sql file.
+For running the project is need to import the database from /database.sql file.
 In src/config/db change the database data to connect to mysql 
 
 After the project is created you should run in the console composer update, in the parent directory
