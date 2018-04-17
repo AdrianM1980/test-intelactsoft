@@ -1,0 +1,12 @@
+{
+    "name": "AdrianM",
+    "require": {
+        "php": ">=7.0.0",
+        "bcosca/fatfree": "dev-master"
+      
+    },
+    
+    "autoload": {
+      "psr-4": {"Mtest\\": "src/"}
+    }
+}
