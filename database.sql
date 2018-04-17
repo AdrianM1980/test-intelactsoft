@@ -37,7 +37,6 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES ('A101','Screwdriver',2,9.75),('A102','Electric screwdriver',1,49.50),('B101','Basic on-off switch',2,4.99),('B102','Press button',2,4.99),('B103','Switch with motion detector',2,12.95);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-17 11:50:55
+-- Dump completed on 2018-04-17 12:12:59
