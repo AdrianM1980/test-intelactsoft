@@ -3,8 +3,6 @@ use Mtest\Controllers\OrderController;
 use Mtest\Controllers\ProductController;
 use Mtest\Models;
 
-
-
 //include autoload file
 require_once  './vendor/autoload.php';
 
@@ -12,8 +10,6 @@ $app = Base::instance();
 
 $orderController = new OrderController();
 $productController = new ProductController();
-
-
 
 $app->route('POST /save-product',
     function($app, $params) use ($productController){
